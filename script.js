@@ -17,8 +17,7 @@ function displayEntry(e) {
     operandOne = "0";} */
     operandOne.innerText = "";
     return;
-  }
-  /* else if (e.target == decimal) {
+  } else if (e.target == decimal) {
     operandOne.innerText.includes(".")
       ? (operandOne.innerText += "")
       : (operandOne.innerText += ".");
@@ -34,7 +33,7 @@ function displayEntry(e) {
       ? (operandOne.innerText = operandOne.innerText.replace("-", ""))
       : (operandOne.innerText = "-" + operandOne.innerText);
     return;
-  } */
+  }
 
   operandOne.innerText += e.target.innerText;
 }
