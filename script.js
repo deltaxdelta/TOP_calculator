@@ -9,13 +9,18 @@ let plusMinus = document.getElementById("plusMinus");
 
 calcBtns.addEventListener("click", displayEntry);
 
+//this code structure seems clunky, but I don't know enough to think of alternatives yet
+
 function displayEntry(e) {
   if (e.target.nodeName !== "BUTTON") {
     return;
+  } else if (e.target == document.querySelector('[data-num="0"]')) {
+    if (operandOne.innerText === "0") {
+      return;
+    }
   } else if (e.target == clr) {
-    /* else if (operandOne.innerText == "0" && e.target.dataset.num == "0") {
-    operandOne = "0";} */
     operandOne.innerText = "";
+    operandTwo.innerText = "";
     return;
   } else if (e.target == decimal) {
     operandOne.innerText.includes(".")
@@ -32,6 +37,14 @@ function displayEntry(e) {
     operandOne.innerText.includes("-")
       ? (operandOne.innerText = operandOne.innerText.replace("-", ""))
       : (operandOne.innerText = "-" + operandOne.innerText);
+    return;
+  } else if (e.target.classList.value == "move") {
+    if (operandOne.innerText === "") {
+      return;
+    }
+    operandOne.innerText += " " + e.target.innerText;
+    operandTwo.innerText = operandOne.innerText;
+    operandOne.innerText = "";
     return;
   }
 
