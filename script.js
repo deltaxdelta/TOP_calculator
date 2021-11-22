@@ -53,19 +53,6 @@ function displayEntry(e) {
       operandTwo.innerText += " " + e.target.innerText;
       return;
     }
-    //else if (
-    //   parseInt(operandTwo.innerText) !== NaN &&
-    //   operandOne.innerText !== ""
-    // ) {
-    //   operandOne.innerText += " " + e.target.innerText;
-    //   operandTwo.innerText = operandOne.innerText;
-    //   operandOne.innerText = "";
-    //   return;
-    // } else if (operandOne.innerText == "" && operandTwo.innerText !== "") {
-    //   getSoln(operandTwo.innerText, operandOne.innerText);
-    //   operandTwo.innerText += " " + e.target.innerText;
-    //   return;
-    // }
 
     operandOne.innerText += " " + e.target.innerText;
     operandTwo.innerText = operandOne.innerText;
