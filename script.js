@@ -40,15 +40,38 @@ function displayEntry(e) {
       : (operandOne.innerText = "-" + operandOne.innerText);
     return;
   } else if (e.target.classList.value == "move") {
-    if (operandOne.innerText === "") {
+    if (operandOne.innerText === "" && operandTwo.innerText === "") {
+      return;
+    } else if (operandTwo.innerText !== "" && operandOne.innerText === "") {
+      operandTwo.innerText += " " + e.target.innerText;
+      return;
+    } else if (
+      operandTwo.innerText.match(/[x\+\-\÷]/gi) &&
+      operandOne.innerText !== ""
+    ) {
+      getSoln(operandTwo.innerText, operandOne.innerText);
+      operandTwo.innerText += " " + e.target.innerText;
       return;
     }
+    //else if (
+    //   parseInt(operandTwo.innerText) !== NaN &&
+    //   operandOne.innerText !== ""
+    // ) {
+    //   operandOne.innerText += " " + e.target.innerText;
+    //   operandTwo.innerText = operandOne.innerText;
+    //   operandOne.innerText = "";
+    //   return;
+    // } else if (operandOne.innerText == "" && operandTwo.innerText !== "") {
+    //   getSoln(operandTwo.innerText, operandOne.innerText);
+    //   operandTwo.innerText += " " + e.target.innerText;
+    //   return;
+    // }
+
     operandOne.innerText += " " + e.target.innerText;
     operandTwo.innerText = operandOne.innerText;
     operandOne.innerText = "";
     return;
   } else if (e.target == eqBtn) {
-    console.log("equals");
     getSoln(operandTwo.innerText, operandOne.innerText);
 
     return;
@@ -67,20 +90,20 @@ function getSoln(x, y) {
 
   switch (operator) {
     case "+":
-      operandOne.innerText = numOne + numTwo;
-      operandTwo.innerText = "";
+      operandTwo.innerText = numOne + numTwo;
+      operandOne.innerText = "";
       break;
     case "-":
-      operandOne.innerText = numOne - numTwo;
-      operandTwo.innerText = "";
+      operandTwo.innerText = numOne - numTwo;
+      operandOne.innerText = "";
       break;
     case "x":
-      operandOne.innerText = numOne * numTwo;
-      operandTwo.innerText = "";
+      operandTwo.innerText = numOne * numTwo;
+      operandOne.innerText = "";
       break;
     case "÷":
-      operandOne.innerText = numOne / numTwo;
-      operandTwo.innerText = "";
+      operandTwo.innerText = numOne / numTwo;
+      operandOne.innerText = "";
       break;
   }
 }

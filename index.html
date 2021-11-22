@@ -11,6 +11,12 @@
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <!--[if lt IE 7]>
@@ -25,45 +31,60 @@
     <div class="main">
       <div class="calcArea">
         <div class="calculator">
-          <div class="calcOutput"></div>
+          <div class="calcOutput">
+            <div id="operandTwo"></div>
+            <div id="operandOne"></div>
+          </div>
 
           <div class="calcBtns">
             <div class="calcRow" id="firstRow">
-              <div class="btnArea" id="clr"><button>Clear</button></div>
-              <div class="btnArea" id="plusMinus"><button>+/-</button></div>
-              <div class="btnArea" id="percent"><button>%</button></div>
-              <div class="operator btnArea" id="divide"><button>÷</button></div>
+              <div class="btnArea">
+                <button id="clr">AC</button>
+              </div>
+              <div class="btnArea">
+                <button id="plusMinus">+/-</button>
+              </div>
+              <div class="btnArea">
+                <button id="bkspc">DEL</button>
+              </div>
+              <div class="operator btnArea">
+                <button class="move" id="divide">÷</button>
+              </div>
             </div>
 
             <div class="calcRow" id="secondRow">
-              <div class="digit btnArea"><button>7</button></div>
-              <div class="digit btnArea"><button>8</button></div>
-              <div class="digit btnArea"><button>9</button></div>
-              <div class="operator btnArea" id="multiply">
-                <button>x</button>
+              <div class="digit btnArea"><button data-num="7">7</button></div>
+              <div class="digit btnArea"><button data-num="8">8</button></div>
+              <div class="digit btnArea"><button data-num="9">9</button></div>
+              <div class="operator btnArea">
+                <button class="move" id="multiply">x</button>
               </div>
             </div>
 
             <div class="calcRow" id="thirdRow">
-              <div class="digit btnArea"><button>4</button></div>
-              <div class="digit btnArea"><button>5</button></div>
-              <div class="digit btnArea"><button>6</button></div>
-              <div class="operator btnArea" id="subtract">
-                <button>-</button>
+              <div class="digit btnArea"><button data-num="4">4</button></div>
+              <div class="digit btnArea"><button data-num="5">5</button></div>
+              <div class="digit btnArea"><button data-num="6">6</button></div>
+              <div class="operator btnArea">
+                <button class="move" id="subtract">-</button>
               </div>
             </div>
 
             <div class="calcRow" id="thirdRow">
-              <div class="digit btnArea"><button>1</button></div>
-              <div class="digit btnArea"><button>2</button></div>
-              <div class="digit btnArea"><button>3</button></div>
-              <div class="operator btnArea" id="add"><button>+</button></div>
+              <div class="digit btnArea"><button data-num="1">1</button></div>
+              <div class="digit btnArea"><button data-num="2">2</button></div>
+              <div class="digit btnArea"><button data-num="3">3</button></div>
+              <div class="operator btnArea">
+                <button class="move" id="add">+</button>
+              </div>
             </div>
 
             <div class="calcRow" id="fourthRow">
-              <div class="digit btnArea"><button>0</button></div>
-              <div class="btnArea" id="decimal"><button>.</button></div>
-              <div class="btnArea" id="equals"><button>=</button></div>
+              <div class="digit btnArea">
+                <button id="zero" data-num="0">0</button>
+              </div>
+              <div class="btnArea"><button id="decimal">.</button></div>
+              <div class="btnArea"><button id="equals">=</button></div>
             </div>
           </div>
         </div>
