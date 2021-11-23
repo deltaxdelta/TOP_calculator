@@ -1,12 +1,12 @@
-let calcBtns = document.querySelector("div.calcBtns");
-let operandOne = document.getElementById("operandOne");
-let operandTwo = document.getElementById("operandTwo");
-let clr = document.getElementById("clr");
-let equals = document.getElementById("equals");
-let decimal = document.getElementById("decimal");
-let bkspc = document.getElementById("bkspc");
-let plusMinus = document.getElementById("plusMinus");
-let eqBtn = document.getElementById("equals");
+const calcBtns = document.querySelector("div.calcBtns");
+const operandOne = document.getElementById("operandOne");
+const operandTwo = document.getElementById("operandTwo");
+const clr = document.getElementById("clr");
+const equals = document.getElementById("equals");
+const decimal = document.getElementById("decimal");
+const bkspc = document.getElementById("bkspc");
+const plusMinus = document.getElementById("plusMinus");
+const eqBtn = document.getElementById("equals");
 
 calcBtns.addEventListener("click", displayEntry);
 
@@ -41,6 +41,8 @@ function displayEntry(e) {
     return;
   } else if (e.target.classList.value == "move") {
     if (operandOne.innerText === "" && operandTwo.innerText === "") {
+      return;
+    } else if (operandTwo.innerText.match(/[x\+\-\÷]/gi)) {
       return;
     } else if (operandTwo.innerText !== "" && operandOne.innerText === "") {
       operandTwo.innerText += " " + e.target.innerText;
@@ -94,3 +96,59 @@ function getSoln(x, y) {
       break;
   }
 }
+
+//this gets repetitive in ways that calls code structure into question
+
+let nums = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+let allOps = ["+", "-", "x", "*", "/", "÷"];
+
+window.addEventListener("keyup", function (event) {
+  if (operandOne.innerText === "0" && event.key == "0") {
+    return;
+  } else if (nums.includes(event.key)) {
+    operandOne.innerText += event.key;
+    return;
+  } else if (event.key == ".") {
+    operandOne.innerText.includes(".")
+      ? (operandOne.innerText += "")
+      : (operandOne.innerText += ".");
+  } else if (allOps.includes(event.key)) {
+    if (operandOne.innerText === "" && operandTwo.innerText === "") {
+      return;
+    } else if (operandTwo.innerText.match(/[x\+\-\÷]/gi)) {
+      return;
+    } else if (operandTwo.innerText == "" && operandOne.innerText !== "") {
+      console.log(operandTwo.innerText);
+      console.log(event.key);
+      operandOne.innerText += " " + event.key;
+      operandTwo.innerText = operandOne.innerText;
+      operandOne.innerText = "";
+      return;
+    } else if (operandTwo.innerText !== "" && operandOne.innerText === "") {
+      operandTwo.innerText += " " + event.key;
+      return;
+    }
+  }
+
+  switch (event.key) {
+    case "Enter":
+      getSoln(operandTwo.innerText, operandOne.innerText);
+      break;
+    case "=":
+      getSoln(operandTwo.innerText, operandOne.innerText);
+      break;
+    case "Backspace":
+      operandOne.innerText = operandOne.innerText.substring(
+        0,
+        operandOne.innerText.length - 1
+      );
+      break;
+    case "Escape":
+      operandOne.innerText = "";
+      operandTwo.innerText = "";
+      break;
+
+    default:
+      return;
+  }
+});
