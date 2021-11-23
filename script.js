@@ -118,8 +118,18 @@ window.addEventListener("keyup", function (event) {
     } else if (operandTwo.innerText.match(/[x\+\-\÷]/gi)) {
       return;
     } else if (operandTwo.innerText == "" && operandOne.innerText !== "") {
-      console.log(operandTwo.innerText);
       console.log(event.key);
+      if (event.key == "*") {
+        operandOne.innerText += " x";
+        operandTwo.innerText = operandOne.innerText;
+        operandOne.innerText = "";
+        return;
+      } else if (event.key == "/") {
+        operandOne.innerText += " ÷";
+        operandTwo.innerText = operandOne.innerText;
+        operandOne.innerText = "";
+        return;
+      }
       operandOne.innerText += " " + event.key;
       operandTwo.innerText = operandOne.innerText;
       operandOne.innerText = "";
@@ -152,3 +162,11 @@ window.addEventListener("keyup", function (event) {
       return;
   }
 });
+
+function convertOp(e) {
+  if (e == "*") {
+    //set keyevent to x
+  } else if (e == "/") {
+    //set keyevent to ÷
+  }
+}
