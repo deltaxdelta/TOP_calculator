@@ -7,6 +7,7 @@ const decimal = document.getElementById("decimal");
 const bkspc = document.getElementById("bkspc");
 const plusMinus = document.getElementById("plusMinus");
 const eqBtn = document.getElementById("equals");
+const calcOutput = document.querySelector("div.calcOutput");
 
 calcBtns.addEventListener("click", displayEntry);
 
@@ -64,8 +65,15 @@ function displayEntry(e) {
     getSoln(operandTwo.innerText, operandOne.innerText);
 
     return;
+  } else if (
+    operandOne.innerText == "0" &&
+    e.target.innerText.match(/([1-9])/g)
+  ) {
+    operandOne.innerText = e.target.innerText;
+    return;
   }
   operandOne.innerText += e.target.innerText;
+  e.preventDefault();
 }
 
 function getSoln(x, y) {
@@ -74,6 +82,9 @@ function getSoln(x, y) {
   let operator = x.slice(-1);
 
   if (numOne == NaN || numTwo == NaN) {
+    return;
+  } else if (operator == "÷" && numTwo == 0) {
+    divideByZero();
     return;
   }
 
@@ -103,6 +114,8 @@ let nums = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 let allOps = ["+", "-", "x", "*", "/", "÷"];
 
 window.addEventListener("keyup", function (event) {
+  calcOutput.classList.add("glow");
+  //if calcButton has focus, prevent default
   if (operandOne.innerText === "0" && event.key == "0") {
     return;
   } else if (nums.includes(event.key)) {
@@ -137,6 +150,9 @@ window.addEventListener("keyup", function (event) {
     } else if (operandTwo.innerText !== "" && operandOne.innerText === "") {
       operandTwo.innerText += " " + event.key;
       return;
+    } else if (operandOne.innerText == "0" && event.key.match(/([1-9])/g)) {
+      operandOne.innerText = e.target.innerText;
+      return;
     }
   }
 
@@ -163,10 +179,14 @@ window.addEventListener("keyup", function (event) {
   }
 });
 
-function convertOp(e) {
-  if (e == "*") {
-    //set keyevent to x
-  } else if (e == "/") {
-    //set keyevent to ÷
-  }
+function divideByZero() {
+  //universe ends
+  let body = document.querySelector("body");
+  body.style.display = "none";
+}
+
+calcOutput.addEventListener("click", glow);
+
+function glow() {
+  calcOutput.classList.toggle("glow");
 }
