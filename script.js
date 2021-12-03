@@ -115,7 +115,7 @@ let allOps = ["+", "-", "x", "*", "/", "÷"];
 
 window.addEventListener("keyup", function (event) {
   calcOutput.classList.add("glow");
-  //if calcButton has focus, prevent default
+
   if (operandOne.innerText === "0" && event.key == "0") {
     return;
   } else if (nums.includes(event.key)) {
@@ -128,7 +128,7 @@ window.addEventListener("keyup", function (event) {
   } else if (allOps.includes(event.key)) {
     if (operandOne.innerText === "" && operandTwo.innerText === "") {
       return;
-    } else if (operandTwo.innerText.match(/[x\+\-\÷]/gi)) {
+    } else if (operandTwo.innerText.match(/[x\+\-\÷\*\/]/gi)) {
       return;
     } else if (operandTwo.innerText == "" && operandOne.innerText !== "") {
       console.log(event.key);
@@ -173,7 +173,12 @@ window.addEventListener("keyup", function (event) {
       operandOne.innerText = "";
       operandTwo.innerText = "";
       break;
-
+    case "*":
+      operandTwo.innerText += " x";
+      break;
+    case "/":
+      operandTwo.innerText += " ÷";
+      break;
     default:
       return;
   }
@@ -189,4 +194,19 @@ calcOutput.addEventListener("click", glow);
 
 function glow() {
   calcOutput.classList.toggle("glow");
+}
+
+//keydown sets focus to appropriate button?
+
+window.addEventListener("keydown", setFocus);
+
+function setFocus(event) {
+  switch (event.key) {
+    case "Enter":
+      equals.focus();
+      console.log(document.activeElement);
+      break;
+    default:
+      return;
+  }
 }
