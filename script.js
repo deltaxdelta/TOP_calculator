@@ -82,7 +82,7 @@ function getSoln(x, y) {
   let operator = x.slice(-1);
 
   if (numOne == NaN || numTwo == NaN) {
-    return;
+    operandOne.innerText = "ERROR";
   } else if (operator == "÷" && numTwo == 0) {
     divideByZero();
     return;
@@ -90,20 +90,20 @@ function getSoln(x, y) {
 
   switch (operator) {
     case "+":
-      operandTwo.innerText = numOne + numTwo;
-      operandOne.innerText = "";
+      operandOne.innerText = numOne + numTwo;
+      operandTwo.innerText = "";
       break;
     case "-":
-      operandTwo.innerText = numOne - numTwo;
-      operandOne.innerText = "";
+      operandOne.innerText = numOne - numTwo;
+      operandTwo.innerText = "";
       break;
     case "x":
-      operandTwo.innerText = numOne * numTwo;
-      operandOne.innerText = "";
+      operandOne.innerText = numOne * numTwo;
+      operandTwo.innerText = "";
       break;
     case "÷":
-      operandTwo.innerText = numOne / numTwo;
-      operandOne.innerText = "";
+      operandOne.innerText = numOne / numTwo;
+      operandTwo.innerText = "";
       break;
   }
 }
