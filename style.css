@@ -297,3 +297,22 @@ button {
 #decimal:hover::before {
   transform: translateX(-50%);
 }
+
+particle {
+  left: 0;
+  z-index: 5;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  opacity: 0; /* hide particles when not in use */
+  clip-path: polygon(
+    50% 1%,
+    60% 39%,
+    100% 50%,
+    63% 60%,
+    50% 100%,
+    40% 60%,
+    0 50%,
+    40% 39%
+  );
+}
