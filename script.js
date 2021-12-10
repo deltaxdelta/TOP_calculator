@@ -274,3 +274,74 @@ function createParticle(x, y) {
     particle.remove();
   };
 }
+
+//h1 is glittery on hover and page load
+
+let sparkle = document.querySelector("#sparkleZone");
+let rect = sparkle.getBoundingClientRect();
+
+window.addEventListener("load", glitterTitle);
+sparkle.addEventListener("mouseover", glitterTitle);
+
+function glitterTitle() {
+  for (let i = 0; i < 12; i++) {
+    makeGlitter();
+  }
+}
+
+function makeGlitter() {
+  const glitter = document.createElement("glitter");
+  document.body.appendChild(glitter);
+
+  const size = Math.floor(Math.random() * 12 + 5);
+  glitter.style.width = `${size}px`;
+  glitter.style.height = `${size}px`;
+
+  const locationX = Math.random() * (rect.right - rect.left) + rect.left; //left and right coords set as bounds
+  const locationY = Math.random() * (rect.bottom - rect.top) + rect.top - 5; //set a little less than top and bottom values as bounds
+
+  //sizes to shift doots during animation
+  const scaler1 = Math.random() + 1;
+  const scaler2 = Math.random() - 0.2;
+
+  //glint the glitter
+  const animation = glitter.animate(
+    [
+      {
+        // Set the position and low opacity of the glitter doot
+        transform: `translate(${locationX}px, ${locationY}px)`,
+        opacity: 0.2,
+      },
+      {
+        opacity: 0.7,
+      },
+      {
+        opacity: 0.3,
+      },
+      {
+        //shift size of doot
+        opacity: 1,
+        transform: `translate(${locationX}px, ${locationY}px) scale(${scaler1})`,
+      },
+      {
+        opacity: 0.4,
+      },
+      {
+        transform: `translate(${locationX}px, ${locationY}px) scale(${scaler2})`,
+        opacity: 0,
+      },
+    ],
+    {
+      // Set a random duration
+      duration: Math.random() * 3000 + 700,
+      easing: "cubic-bezier(.27,.85,.84,.4)",
+      // Delay glitter with a random value of up to 200ms
+      delay: Math.random() * 200,
+    }
+  );
+
+  // When the animation is complete, remove the element from the DOM
+  animation.onfinish = () => {
+    glitter.remove();
+  };
+}

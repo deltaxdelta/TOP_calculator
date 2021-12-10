@@ -8,10 +8,49 @@ body {
 }
 
 .header {
-  min-height: 100px;
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+#sparkleZone {
+  display: inline-block;
+  box-sizing: border-box;
+  justify-self: center;
+}
+
+glitter {
+  left: 0;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  opacity: 0;
+  clip-path: polygon(
+    38% 0%,
+    51% 23%,
+    65% 13%,
+    61% 29%,
+    88% 29%,
+    64% 40%,
+    74% 55%,
+    59% 49%,
+    58% 73.5%,
+    49% 50%,
+    37% 62%,
+    40% 46%,
+    15% 50%,
+    36% 36%,
+    23% 25%,
+    40% 26%
+  );
+  width: 20px;
+  height: 20px;
+  background: rgba(248, 197, 115, 0.87);
+  box-shadow: 2px 2px 2px 1px rgba(236, 118, 118, 0.2);
 }
 
 h1 {
+  margin: 0;
   font-family: "Montagu Slab", serif;
   text-align: center;
   font-size: 3rem;
@@ -22,6 +61,7 @@ h1 {
 .main {
   flex-grow: 1;
   margin: 0 auto;
+  padding-top: 3rem;
 }
 
 .footer {
