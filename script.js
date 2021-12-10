@@ -43,8 +43,6 @@ function displayEntry(e) {
   } else if (e.target.classList.value == "move") {
     if (operandOne.innerText === "" && operandTwo.innerText === "") {
       return;
-    } else if (operandTwo.innerText.match(/[x\+\-\÷]/gi)) {
-      return;
     } else if (operandTwo.innerText !== "" && operandOne.innerText === "") {
       operandTwo.innerText += " " + e.target.innerText;
       return;
@@ -53,7 +51,8 @@ function displayEntry(e) {
       operandOne.innerText !== ""
     ) {
       getSoln(operandTwo.innerText, operandOne.innerText);
-      operandTwo.innerText += " " + e.target.innerText;
+      operandTwo.innerText = operandOne.innerText + " " + e.target.innerText;
+      operandOne.innerText = "";
       return;
     }
 
