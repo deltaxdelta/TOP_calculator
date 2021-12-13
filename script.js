@@ -125,9 +125,21 @@ window.addEventListener("keyup", function (event) {
       ? (operandOne.innerText += "")
       : (operandOne.innerText += ".");
   } else if (allOps.includes(event.key)) {
+    console.log("operator key pressed");
     if (operandOne.innerText === "" && operandTwo.innerText === "") {
       return;
-    } else if (operandTwo.innerText.match(/[x\+\-\÷\*\/]/gi)) {
+    } else if (
+      operandTwo.innerText.match(/[x\+\-\÷\*\/]/gi) &&
+      operandOne.innerText == ""
+    ) {
+      return;
+    } else if (
+      operandTwo.innerText.match(/[x\+\-\÷\*\/]/gi) &&
+      operandOne.innerText !== ""
+    ) {
+      getSoln(operandTwo.innerText, operandOne.innerText);
+      operandTwo.innerText = operandOne.innerText + " " + event.key;
+      operandOne.innerText = "";
       return;
     } else if (operandTwo.innerText == "" && operandOne.innerText !== "") {
       console.log(event.key);
@@ -148,9 +160,6 @@ window.addEventListener("keyup", function (event) {
       return;
     } else if (operandTwo.innerText !== "" && operandOne.innerText === "") {
       operandTwo.innerText += " " + event.key;
-      return;
-    } else if (operandOne.innerText == "0" && event.key.match(/([1-9])/g)) {
-      operandOne.innerText = e.target.innerText;
       return;
     }
   }
