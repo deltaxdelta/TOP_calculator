@@ -1,3 +1,6 @@
+disintegrate.init(); //initialize disentigrate plugin
+
+const calc = document.querySelector(".calcArea");
 const calcBtns = document.querySelector("div.calcBtns");
 const operandOne = document.getElementById("operandOne");
 const operandTwo = document.getElementById("operandTwo");
@@ -194,8 +197,11 @@ window.addEventListener("keyup", function (event) {
 
 function divideByZero() {
   //universe ends
-  let body = document.querySelector("body");
-  body.style.display = "none";
+  const disObj = disintegrate.getDisObj(calc);
+
+  disintegrate.createSimultaneousParticles(disObj);
+
+  calc.remove();
 }
 
 calcOutput.addEventListener("click", glow);
