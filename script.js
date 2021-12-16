@@ -198,10 +198,21 @@ window.addEventListener("keyup", function (event) {
 function divideByZero() {
   //universe ends
   const disObj = disintegrate.getDisObj(calc);
+  const hero = document.querySelector(".hero");
 
   disintegrate.createSimultaneousParticles(disObj);
 
   calc.remove();
+
+  setTimeout(() => {
+    document.querySelector("h1").classList.add("animate__animated");
+    document.querySelector("h1").classList.add("animate__hinge");
+  }, 800);
+
+  hero.classList.add("animate-hero");
+
+  window.removeEventListener("load", glitterTitle);
+  sparkle.removeEventListener("mouseover", glitterTitle);
 }
 
 calcOutput.addEventListener("click", glow);
